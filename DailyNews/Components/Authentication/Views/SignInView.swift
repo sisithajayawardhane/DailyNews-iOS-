@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct SignInView: View {
+    
+    @State private var password = ""
+    @State private var username = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            CustomInputRowView(textfieldName: "EMAIL",
+                               placeholderText: "email here",
+                               text: $username)
+
+            CustomInputRowView(textfieldName: "PASSWORD",
+                               placeholderText: "password here",
+                               isSecureField: true,
+                               text: $password)
+            
+            Button {
+                
+            } label: {
+                Text("Sign In")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 340, height: 50)
+                    .background(.red)
+                    .clipShape(Capsule())
+                    .padding()
+            }
+        }
     }
 }
 

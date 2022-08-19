@@ -10,7 +10,7 @@ import SwiftUI
 struct LatestNewsCardRowView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
-            .frame(width: 350, height: 230)
+            .frame(width: 330, height: 250)
     }
 }
 
