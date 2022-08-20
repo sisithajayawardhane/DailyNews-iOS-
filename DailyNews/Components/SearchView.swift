@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchView: View {
     
+    static let base_url = "https://newsapi.org/v2/everything?q="
+    static let api_key = "&apiKey=022af00f8c084728931fd7ae0ddeba8d"
     
-    //var category:String
     @State var text:String = ""
     @State var api_url:String
     @State var general_api_url =  "https://newsapi.org/v2/everything?q=general&apiKey=022af00f8c084728931fd7ae0ddeba8d"
@@ -47,12 +48,26 @@ struct SearchView: View {
     var body: some View {
         ZStack {
             VStack {
-                TextField("Search here", text: $text)
-                    .textCase(.lowercase)
-                    .frame(width: 350, height: 20)
-                    .padding(15)
-                    .background(Color(red: 0.9, green: 0.9, blue: 0.9))
-                    .clipShape(Capsule())
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    TextField("Search here", text: $text)
+                        .overlay(
+                            Image(systemName: "xmark.circle.fill")
+                                .padding()
+                                .onTapGesture {
+                                    text = ""
+                                }
+                            ,alignment: .trailing
+                    )
+                }
+                .font(.headline)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(.white)
+                        .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+                )
+                .padding()
                     
                 
                 HStack {
@@ -146,7 +161,7 @@ extension SearchView {
         if text.count == 0 {
            api_url = general_api_url
         }else {
-            api_url = "https://newsapi.org/v2/everything?q=\(text)&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+            api_url = "\(SearchView.base_url)\(text)\(SearchView.api_key)"
         
         }
         return api_url
@@ -164,7 +179,7 @@ extension SearchView {
             if let data = data {
                 if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
                     DispatchQueue.main.async {
-                        //print(response)
+                        print(response)
 
                         self.details_general = response
                     }

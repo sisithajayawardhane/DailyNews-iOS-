@@ -11,12 +11,16 @@ struct HomeView: View {
     
     @AppStorage("signed_in") var currentUserSignedIn:Bool = false
     @State var latest_news_api_url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var general_api_url =  "https://newsapi.org/v2/everything?q=general&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var health_api_url =  "https://newsapi.org/v2/everything?q=health&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var business_api_url =  "https://newsapi.org/v2/everything?q=business&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var science_api_url =  "https://newsapi.org/v2/everything?q=science&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var sports_api_url =  "https://newsapi.org/v2/everything?q=sports&apiKey=022af00f8c084728931fd7ae0ddeba8d"
-    @State var technology_api_url =  "https://newsapi.org/v2/everything?q=technology&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var optional_url = "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440"
+    static let base_url = "https://newsapi.org/v2/everything?q="
+    static let api_key = "&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var general_api_url =  "\(base_url)general\(api_key)"
+    @State var health_api_url =  "\(base_url)health\(api_key)"
+    @State var business_api_url = "\(base_url)business\(api_key)"
+    @State var science_api_url = "\(base_url)science\(api_key)"
+    @State var sports_api_url = "\(base_url)sports\(api_key)"
+    @State var technology_api_url = "\(base_url)technology\(api_key)"
+    
     @State var details = APIStructure(
         totalResults: 0,
         articles: [article]()
@@ -49,41 +53,36 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             
-            VStack(spacing:25) {
+            VStack(spacing:ui.y * 0.04) {
                 //search bar and notification button
                 HStack {
                     NavigationLink {
-                        SearchView(api_url: "https://newsapi.org/v2/everything?q=general&apiKey=022af00f8c084728931fd7ae0ddeba8d")
+                        SearchView(api_url: general_api_url)
                     } label: {
                         HStack {
-                            Text("Dodgecoin to the Moon....")
-                                
                             Image(systemName: "magnifyingglass")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 30)
-                                .frame(width: 20)
-                            
-                                
+                            Text("Search here")
                         }
-                        .frame(width: 300, height: 40)
-                        .background(Color(red: 0.9, green: 0.9, blue: 0.9))
                         .foregroundColor(.gray)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .font(.system(size: ui.x * 0.04))
+                        .padding()
+                        .frame(width:ui.x * 0.7)
+                        .background(
+                            RoundedRectangle(cornerRadius: 25)
+                                .fill(.white)
+                                .shadow(color: .black.opacity(0.15), radius: 10, x: 0, y: 0)
+                        )
                     }
                     
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "bell.badge")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                            .padding(7)
-                            .background(.red)
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
-                    }
+                    Image(systemName: "bell.badge")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .padding(7)
+                        .background(.red)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                    
                 }
                 //latest news & see all
                 HStack {
@@ -106,10 +105,10 @@ struct HomeView: View {
                             NavigationLink {
                                 NewsDetailView(description: article.content ?? "", image_URL: article.urlToImage ?? "")
                             }label: {
-                                LatestNewsCardRowView(image_URL: article.urlToImage ?? "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440",
+                                LatestNewsCardRowView(image_URL: article.urlToImage ?? optional_url,
                                                       author: article.author ?? "unknown",
                                                       title: article.title!,
-                                                      description: article.description ?? "Murillo Karam is the highest-ranking former official arrested in the investigation into the 43 Ayotzinapa students who disappeared in 2014.")
+                                                      description: article.description ?? "")
                             }
                             
                         }
@@ -159,13 +158,15 @@ struct HomeView: View {
             
             NavigationBarView()
         }
-        .onAppear(perform: loadData)
-        .onAppear(perform: loadData_general)
-        .onAppear(perform: loadData_health)
-        .onAppear(perform: loadData_business)
-        .onAppear(perform: loadData_science)
-        .onAppear(perform: loadData_sports)
-        .onAppear(perform: loadData_technology)
+        .onAppear(perform: {
+            loadData()
+            loadData_general()
+            loadData_health()
+            loadData_business()
+            loadData_science()
+            loadData_sports()
+            loadData_technology()
+        })
         .navigationBarHidden(true)
         
     }
@@ -175,10 +176,34 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .previewDevice("iPhone 13 Pro Max")
+        HomeView()
+            .previewDevice("iPhone 8")
+        HomeView()
+            .previewDevice("iPod touch (7th generation)")
     }
 }
 
 extension HomeView {
+    func loadDataDefault(url:String,details:APIStructure){
+        guard let url = URL(string: url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        print(response)
+                        self.details = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
     
     func loadData() {
 
@@ -187,13 +212,12 @@ extension HomeView {
             return
         }
         let request = URLRequest(url: url)
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
                     DispatchQueue.main.async {
-                        //print(response)
-
+                        print(response)
                         self.details = response
                     }
                     return

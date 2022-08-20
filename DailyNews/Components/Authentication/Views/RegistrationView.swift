@@ -9,29 +9,25 @@ import SwiftUI
 
 struct RegistrationView: View {
     
-    @State private var email = ""
     @State private var password = ""
     @State private var username = ""
     
-    @AppStorage("email") var currentUserEmail:String?
     @AppStorage("username") var currentUserUsername:String?
     @AppStorage("password") var currentUserPassword:String?
     @AppStorage("signed_in") var currentUserSignedIn:Bool = false
+    
+    @State var userData = ["Admin":"Admin"]
     
     var body: some View {
         
         VStack {
             Text("Daily News")
-                .font(.title)
+                .font(.system(size: ui.x * 0.08))
             
             CustomInputRowView(textfieldName: "Username",
                                placeholderText: "username here",
                                text: $username)
             
-            CustomInputRowView(textfieldName: "Email",
-                               placeholderText: "email here",
-                               text: $email)
-
             CustomInputRowView(textfieldName: "Password",
                                placeholderText: "password here",
                                isSecureField: true,
@@ -41,9 +37,9 @@ struct RegistrationView: View {
                 signUp()
             } label: {
                 Text("Sign Up")
-                    .font(.headline)
+                    .font(.system(size: ui.x * 0.05))
                     .foregroundColor(.white)
-                    .frame(width: 340, height: 50)
+                    .frame(width: ui.x * 0.8, height: ui.y * 0.07)
                     .background(.red)
                     .clipShape(Capsule())
                     .padding()
@@ -55,15 +51,16 @@ struct RegistrationView: View {
             } label: {
                 HStack {
                     Text("Already have an account?")
-                        .font(.footnote)
+                        .font(.system(size: ui.x * 0.04))
                     
                     Text("Sign In")
-                        .font(.footnote)
+                        .font(.system(size: ui.x * 0.04))
                         .fontWeight(.semibold)
                 }
             }
             .foregroundColor(.red)
         }
+        .navigationBarHidden(true)
         
         
     }
@@ -77,12 +74,14 @@ struct RegistrationView_Previews: PreviewProvider {
 }
 extension RegistrationView {
     func signUp(){
-        currentUserEmail = email
         currentUserPassword = password
         currentUserUsername = username
-        currentUserSignedIn = true
+        if username.count > 0 && password.count > 0 {
+            currentUserSignedIn = true
+        }
         print(currentUserSignedIn)
     }
+    
 }
 
 

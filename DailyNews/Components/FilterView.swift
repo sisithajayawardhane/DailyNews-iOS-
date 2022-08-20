@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+struct modi:ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: ui.x * 0.25, height: ui.y * 0.05)
+            .background(Color("LightGray"))
+            .clipShape(Capsule())
+            .font(.system(size: ui.x * 0.04))
+    }
+}
+
 struct FilterView: View {
     
     @Environment(\.dismiss) var dismiss
@@ -17,41 +27,25 @@ struct FilterView: View {
             VStack {
                 HStack {
                     Text("Filter")
-                        .font(.title)
+                        .font(.system(size: ui.x * 0.08))
                         .bold()
-                    Spacer()
-                    HStack {
-                        Image(systemName:"trash")
-                            
-                        Text("Reset")
-                    }
-                    .padding(10)
-                    .background(Color("LightGray"))
-                    //.background(Color(red: 0.9, green: 0.9, blue: 0.9))
-                    .clipShape(Capsule())
+                        
                 }
-                
                 HStack {
                     Text("Sort By")
-                        .font(.title2)
-                    Spacer()
+                        .font(.system(size: ui.x * 0.04))
+                    
                 }
                 .padding()
                 VStack {
                     HStack {
                         Text("category")
-                            .frame(width: 100, height: 50)
-                            .background(Color("LightGray"))
-                            .clipShape(Capsule())
+                            .modifier(modi())
                         Text("language")
-                            .frame(width: 100, height: 50)
-                            .background(Color("LightGray"))
-                            .clipShape(Capsule())
+                            .modifier(modi())
                             
                         Text("country")
-                            .frame(width: 100, height: 50)
-                            .background(Color("LightGray"))
-                            .clipShape(Capsule())
+                            .modifier(modi())
                         
                     }
                     
@@ -60,19 +54,17 @@ struct FilterView: View {
                     dismiss()
                 } label: {
                     Text("SAVE")
-                        .font(.headline)
+                        .font(.system(size: ui.x * 0.04))
                         .foregroundColor(.white)
-                        .frame(width: 340, height: 50)
+                        .frame(width: ui.x * 0.8, height: ui.y * 0.07)
                         .background(.red)
                         .clipShape(Capsule())
                         .padding()
                 }
             }
-            .frame(width: 400, height: 400)
             .clipShape(Rectangle())
         .padding()
         }
-        .frame(height: 400)
         
     }
     
@@ -81,5 +73,10 @@ struct FilterView: View {
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         FilterView()
+            .previewDevice("iPhone 13 Pro Max")
+        FilterView()
+            .previewDevice("iPhone 8")
+        FilterView()
+            .previewDevice("iPod touch (7th generation)")
     }
 }

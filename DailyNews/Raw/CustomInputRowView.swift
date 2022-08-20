@@ -29,12 +29,17 @@ struct CustomInputRowView: View {
                     .disableAutocorrection(true)
             }
         }
-        .padding()
+        .padding(ui.x * 0.04)
     }
 }
 
 struct CustomInputRowView_Previews: PreviewProvider {
     static var previews: some View {
         CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
+            .previewDevice("iPhone 13 Pro Max")
+        CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
+            .previewDevice("iPhone 8")
+        CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
+            .previewDevice("iPod touch (7th generation)")
     }
 }

@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct ui {
+    static let x = UIScreen.main.bounds.width
+    static let y = UIScreen.main.bounds.height
+}
+
 struct ContentView: View {
     
     @AppStorage("signed_in") var currentUserSignedIn:Bool = false
@@ -15,7 +20,7 @@ struct ContentView: View {
         if currentUserSignedIn == true {
             HomeView()
         } else {
-            RegistrationView()
+            SignInView()
         }
     }
 }

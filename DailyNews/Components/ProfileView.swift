@@ -17,9 +17,9 @@ struct ProfileView: View {
                 currentUserSignedIn = false
             } label: {
                 Text("Log Out")
-                    .font(.headline)
+                    .font(.system(size: ui.x * 0.04))
                     .foregroundColor(.white)
-                    .frame(width: 340, height: 50)
+                    .frame(width: ui.x * 0.7, height: ui.y * 0.07)
                     .background(.red)
                     .clipShape(Capsule())
                     .padding()
@@ -35,5 +35,10 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .previewDevice("iPhone 13 Pro Max")
+        ProfileView()
+            .previewDevice("iPhone 8")
+        ProfileView()
+            .previewDevice("iPod touch (7th generation)")
     }
 }

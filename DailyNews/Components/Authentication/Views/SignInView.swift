@@ -17,6 +17,9 @@ struct SignInView: View {
     
     var body: some View {
         VStack {
+            Text("Daily News")
+                .font(.system(size: ui.x * 0.08))
+            
             CustomInputRowView(textfieldName: "Username",
                                placeholderText: "username here",
                                text: $username)
@@ -30,13 +33,26 @@ struct SignInView: View {
                 signIn()
             } label: {
                 Text("Sign In")
-                    .font(.headline)
+                    .font(.system(size: ui.x * 0.05))
                     .foregroundColor(.white)
-                    .frame(width: 340, height: 50)
+                    .frame(width: ui.x * 0.8, height: ui.y * 0.07)
                     .background(.red)
                     .clipShape(Capsule())
                     .padding()
             }
+            NavigationLink {
+                RegistrationView()
+            } label: {
+                HStack {
+                    Text("Don't you have an account?")
+                        .font(.system(size: ui.x * 0.04))
+                    
+                    Text("Sign Up")
+                        .font(.system(size: ui.x * 0.04))
+                        .fontWeight(.semibold)
+                }
+            }
+            .foregroundColor(.red)
         }
         .navigationBarHidden(true)
     }
@@ -45,6 +61,12 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+            .previewDevice("iPhone 13 Pro Max")
+        SignInView()
+            .previewDevice("iPhone 8")
+        SignInView()
+            .previewDevice("iPod touch (7th generation)")
+            
     }
 }
 
