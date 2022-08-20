@@ -11,20 +11,23 @@ struct SignInView: View {
     
     @State private var password = ""
     @State private var username = ""
+    @AppStorage("username") var currentUserUsername:String?
+    @AppStorage("password") var currentUserPassword:String?
+    @AppStorage("signed_in") var currentUserSignedIn:Bool = false
     
     var body: some View {
         VStack {
-            CustomInputRowView(textfieldName: "EMAIL",
-                               placeholderText: "email here",
+            CustomInputRowView(textfieldName: "Username",
+                               placeholderText: "username here",
                                text: $username)
 
-            CustomInputRowView(textfieldName: "PASSWORD",
+            CustomInputRowView(textfieldName: "Password",
                                placeholderText: "password here",
                                isSecureField: true,
                                text: $password)
             
             Button {
-                
+                signIn()
             } label: {
                 Text("Sign In")
                     .font(.headline)
@@ -35,11 +38,20 @@ struct SignInView: View {
                     .padding()
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
+    }
+}
+
+extension SignInView {
+    func signIn(){
+        if username == currentUserUsername && password == currentUserPassword {
+            currentUserSignedIn = true
+        }
     }
 }

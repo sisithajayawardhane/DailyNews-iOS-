@@ -19,6 +19,11 @@
 		0482EF9728AF968A00F9495E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EF9628AF968A00F9495E /* RegistrationView.swift */; };
 		0482EF9B28AF97B900F9495E /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EF9A28AF97B900F9495E /* AuthViewModel.swift */; };
 		0482EF9D28AFB23A00F9495E /* CustomInputRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EF9C28AFB23A00F9495E /* CustomInputRowView.swift */; };
+		0482EF9F28AFEBCD00F9495E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EF9E28AFEBCD00F9495E /* ContentView.swift */; };
+		0482EFA128AFF09700F9495E /* NavBarButtonRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EFA028AFF09700F9495E /* NavBarButtonRowView.swift */; };
+		0482EFA328AFF2DA00F9495E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EFA228AFF2DA00F9495E /* ProfileView.swift */; };
+		0482EFA528B080F200F9495E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EFA428B080F200F9495E /* FilterView.swift */; };
+		0482EFA728B099D600F9495E /* ApiConnectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EFA628B099D600F9495E /* ApiConnectorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +40,11 @@
 		0482EF9628AF968A00F9495E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		0482EF9A28AF97B900F9495E /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		0482EF9C28AFB23A00F9495E /* CustomInputRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputRowView.swift; sourceTree = "<group>"; };
+		0482EF9E28AFEBCD00F9495E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0482EFA028AFF09700F9495E /* NavBarButtonRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarButtonRowView.swift; sourceTree = "<group>"; };
+		0482EFA228AFF2DA00F9495E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		0482EFA428B080F200F9495E /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		0482EFA628B099D600F9495E /* ApiConnectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnectorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,8 @@
 				0482EF9228AF91ED00F9495E /* Raw */,
 				0482EF9128AF91C300F9495E /* Components */,
 				0482EF7728AF6CD400F9495E /* DailyNewsApp.swift */,
+				0482EF9E28AFEBCD00F9495E /* ContentView.swift */,
+				0482EFA628B099D600F9495E /* ApiConnectorViewModel.swift */,
 				0482EF7B28AF6CDA00F9495E /* Assets.xcassets */,
 				0482EF7D28AF6CDA00F9495E /* Preview Content */,
 			);
@@ -89,7 +101,9 @@
 			children = (
 				0482EF9328AF963800F9495E /* Authentication */,
 				0482EF8928AF90F500F9495E /* HomeView.swift */,
+				0482EFA228AFF2DA00F9495E /* ProfileView.swift */,
 				0482EF8B28AF914300F9495E /* SearchView.swift */,
+				0482EFA428B080F200F9495E /* FilterView.swift */,
 				0482EF8D28AF916D00F9495E /* NewsDetailView.swift */,
 			);
 			path = Components;
@@ -99,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				0482EF8728AF78DC00F9495E /* LatestNewsCardRowView.swift */,
+				0482EFA028AFF09700F9495E /* NavBarButtonRowView.swift */,
 				0482EF8528AF73FF00F9495E /* NewsCardRowView.swift */,
 				0482EF9C28AFB23A00F9495E /* CustomInputRowView.swift */,
 			);
@@ -201,7 +216,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0482EFA528B080F200F9495E /* FilterView.swift in Sources */,
 				0482EF8C28AF914400F9495E /* SearchView.swift in Sources */,
+				0482EFA328AFF2DA00F9495E /* ProfileView.swift in Sources */,
+				0482EF9F28AFEBCD00F9495E /* ContentView.swift in Sources */,
 				0482EF9D28AFB23A00F9495E /* CustomInputRowView.swift in Sources */,
 				0482EF9528AF967900F9495E /* SignInView.swift in Sources */,
 				0482EF8628AF73FF00F9495E /* NewsCardRowView.swift in Sources */,
@@ -209,6 +227,8 @@
 				0482EF8A28AF90F500F9495E /* HomeView.swift in Sources */,
 				0482EF8E28AF916D00F9495E /* NewsDetailView.swift in Sources */,
 				0482EF8828AF78DC00F9495E /* LatestNewsCardRowView.swift in Sources */,
+				0482EFA728B099D600F9495E /* ApiConnectorViewModel.swift in Sources */,
+				0482EFA128AFF09700F9495E /* NavBarButtonRowView.swift in Sources */,
 				0482EF9728AF968A00F9495E /* RegistrationView.swift in Sources */,
 				0482EF9B28AF97B900F9495E /* AuthViewModel.swift in Sources */,
 			);

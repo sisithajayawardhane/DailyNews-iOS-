@@ -13,10 +13,17 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var username = ""
     
+    @AppStorage("email") var currentUserEmail:String?
+    @AppStorage("username") var currentUserUsername:String?
+    @AppStorage("password") var currentUserPassword:String?
+    @AppStorage("signed_in") var currentUserSignedIn:Bool = false
+    
     var body: some View {
+        
         VStack {
             Text("Daily News")
                 .font(.title)
+            
             CustomInputRowView(textfieldName: "Username",
                                placeholderText: "username here",
                                text: $username)
@@ -31,7 +38,7 @@ struct RegistrationView: View {
                                text: $password)
             
             Button {
-                
+                signUp()
             } label: {
                 Text("Sign Up")
                     .font(.headline)
@@ -42,8 +49,9 @@ struct RegistrationView: View {
                     .padding()
             }
             
-            Button {
-                
+            
+            NavigationLink {
+                SignInView()
             } label: {
                 HStack {
                     Text("Already have an account?")
@@ -56,7 +64,10 @@ struct RegistrationView: View {
             }
             .foregroundColor(.red)
         }
+        
+        
     }
+        
 }
 
 struct RegistrationView_Previews: PreviewProvider {
@@ -64,3 +75,14 @@ struct RegistrationView_Previews: PreviewProvider {
         RegistrationView()
     }
 }
+extension RegistrationView {
+    func signUp(){
+        currentUserEmail = email
+        currentUserPassword = password
+        currentUserUsername = username
+        currentUserSignedIn = true
+        print(currentUserSignedIn)
+    }
+}
+
+

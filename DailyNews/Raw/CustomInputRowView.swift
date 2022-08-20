@@ -22,9 +22,11 @@ struct CustomInputRowView: View {
             if isSecureField ?? false {
                 SecureField(placeholderText, text: $text )
                     .textFieldStyle(.roundedBorder)
+                    .disableAutocorrection(true)
             } else {
                 TextField(placeholderText, text: $text )
                     .textFieldStyle(.roundedBorder)
+                    .disableAutocorrection(true)
             }
         }
         .padding()

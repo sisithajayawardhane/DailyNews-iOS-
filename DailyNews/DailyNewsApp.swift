@@ -11,7 +11,10 @@ import SwiftUI
 struct DailyNewsApp: App {
     var body: some Scene {
         WindowGroup {
-            RegistrationView()
+            NavigationView {
+                //ContentView()
+                HomeView(category: "dummy")
+            }
         }
     }
 }
