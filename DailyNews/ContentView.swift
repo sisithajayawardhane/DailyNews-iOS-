@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         if currentUserSignedIn == true {
-            HomeView(category: "health")
+            HomeView()
         } else {
             RegistrationView()
         }

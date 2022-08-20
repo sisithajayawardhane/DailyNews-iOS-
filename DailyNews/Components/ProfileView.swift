@@ -12,18 +12,22 @@ struct ProfileView: View {
     @AppStorage("signed_in") var currentUserSignedIn:Bool = false
     
     var body: some View {
-        Button {
-            currentUserSignedIn = false
-        } label: {
-            Text("Log Out")
-                .font(.headline)
-                .foregroundColor(.white)
-                .frame(width: 340, height: 50)
-                .background(.red)
-                .clipShape(Capsule())
-                .padding()
+        ZStack {
+            Button {
+                currentUserSignedIn = false
+            } label: {
+                Text("Log Out")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 340, height: 50)
+                    .background(.red)
+                    .clipShape(Capsule())
+                    .padding()
+            }
+            .navigationBarHidden(true)
+            
+            NavigationBarView()
         }
-        .navigationBarHidden(true)
     }
         
 }

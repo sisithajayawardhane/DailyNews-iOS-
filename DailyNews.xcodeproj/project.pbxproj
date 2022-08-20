@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047D920128B0D8DA00BA40AD /* CategoryButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D920028B0D8DA00BA40AD /* CategoryButtonView.swift */; };
+		047D920528B119B200BA40AD /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D920428B119B200BA40AD /* NavigationBarView.swift */; };
 		0482EF7828AF6CD400F9495E /* DailyNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482EF7728AF6CD400F9495E /* DailyNewsApp.swift */; };
 		0482EF7C28AF6CDA00F9495E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0482EF7B28AF6CDA00F9495E /* Assets.xcassets */; };
 		0482EF7F28AF6CDA00F9495E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0482EF7E28AF6CDA00F9495E /* Preview Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047D920028B0D8DA00BA40AD /* CategoryButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButtonView.swift; sourceTree = "<group>"; };
+		047D920428B119B200BA40AD /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		0482EF7428AF6CD400F9495E /* DailyNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0482EF7728AF6CD400F9495E /* DailyNewsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyNewsApp.swift; sourceTree = "<group>"; };
 		0482EF7B28AF6CDA00F9495E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				0482EF8728AF78DC00F9495E /* LatestNewsCardRowView.swift */,
+				047D920428B119B200BA40AD /* NavigationBarView.swift */,
+				047D920028B0D8DA00BA40AD /* CategoryButtonView.swift */,
 				0482EFA028AFF09700F9495E /* NavBarButtonRowView.swift */,
 				0482EF8528AF73FF00F9495E /* NewsCardRowView.swift */,
 				0482EF9C28AFB23A00F9495E /* CustomInputRowView.swift */,
@@ -223,7 +229,9 @@
 				0482EF9D28AFB23A00F9495E /* CustomInputRowView.swift in Sources */,
 				0482EF9528AF967900F9495E /* SignInView.swift in Sources */,
 				0482EF8628AF73FF00F9495E /* NewsCardRowView.swift in Sources */,
+				047D920528B119B200BA40AD /* NavigationBarView.swift in Sources */,
 				0482EF7828AF6CD400F9495E /* DailyNewsApp.swift in Sources */,
+				047D920128B0D8DA00BA40AD /* CategoryButtonView.swift in Sources */,
 				0482EF8A28AF90F500F9495E /* HomeView.swift in Sources */,
 				0482EF8E28AF916D00F9495E /* NewsDetailView.swift in Sources */,
 				0482EF8828AF78DC00F9495E /* LatestNewsCardRowView.swift in Sources */,

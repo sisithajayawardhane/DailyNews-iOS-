@@ -17,7 +17,7 @@ struct LatestNewsCardRowView: View {
         ZStack {
             AsyncImage(url: URL(string: image_URL)){ image in
                 image.resizable()
-                    .contrast(0.3)
+                    .contrast(0.6)
             } placeholder: {
                 ProgressView()
             }

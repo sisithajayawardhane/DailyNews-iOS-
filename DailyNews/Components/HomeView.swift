@@ -9,10 +9,39 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var category:String
     @AppStorage("signed_in") var currentUserSignedIn:Bool = false
     @State var latest_news_api_url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var general_api_url =  "https://newsapi.org/v2/everything?q=general&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var health_api_url =  "https://newsapi.org/v2/everything?q=health&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var business_api_url =  "https://newsapi.org/v2/everything?q=business&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var science_api_url =  "https://newsapi.org/v2/everything?q=science&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var sports_api_url =  "https://newsapi.org/v2/everything?q=sports&apiKey=022af00f8c084728931fd7ae0ddeba8d"
+    @State var technology_api_url =  "https://newsapi.org/v2/everything?q=technology&apiKey=022af00f8c084728931fd7ae0ddeba8d"
     @State var details = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_general = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_health = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_business = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_science = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_sports = APIStructure(
+        totalResults: 0,
+        articles: [article]()
+    )
+    @State var details_technology = APIStructure(
         totalResults: 0,
         articles: [article]()
     )
@@ -24,7 +53,7 @@ struct HomeView: View {
                 //search bar and notification button
                 HStack {
                     NavigationLink {
-                        SearchView(category: "dummy", searchResultTest: "dummy")
+                        SearchView(api_url: "https://newsapi.org/v2/everything?q=general&apiKey=022af00f8c084728931fd7ae0ddeba8d")
                     } label: {
                         HStack {
                             Text("Dodgecoin to the Moon....")
@@ -74,29 +103,52 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(details.articles,id: \.self){ article in
-                            LatestNewsCardRowView(image_URL: article.urlToImage!,
-                                                  author: article.author ?? "unknown",
-                                                  title: article.title!,
-                                                  description: article.description!)
+                            NavigationLink {
+                                NewsDetailView(description: article.content ?? "", image_URL: article.urlToImage ?? "")
+                            }label: {
+                                LatestNewsCardRowView(image_URL: article.urlToImage ?? "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440",
+                                                      author: article.author ?? "unknown",
+                                                      title: article.title!,
+                                                      description: article.description ?? "Murillo Karam is the highest-ranking former official arrested in the investigation into the 43 Ayotzinapa students who disappeared in 2014.")
+                            }
+                            
                         }
                     }
                 }
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(0..<10){ index in
-                            Text(category)
-                                .frame(width: 100, height: 50)
-                                .background(Color("LightGray"))
-                                .clipShape(Capsule())
-                        }
+                        CategoryButtonView(category: "general")
+                        CategoryButtonView(category: "health")
+                            .onTapGesture {
+                                details_general = details_health
+                            }
+                        CategoryButtonView(category: "business")
+                            .onTapGesture {
+                                details_general = details_business
+                            }
+                        CategoryButtonView(category: "science")
+                            .onTapGesture {
+                                details_general = details_science
+                            }
+                        CategoryButtonView(category: "sports")
+                            .onTapGesture {
+                                details_general = details_sports
+                            }
+                        CategoryButtonView(category: "technology")
+                            .onTapGesture {
+                                details_general = details_technology
+                            }
                     }
                 }
                 
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        ForEach(0..<10){ index in
-                            NewsCardRowView()
+                        ForEach(details_general.articles, id: \.self){ article in
+                            NewsCardRowView(url: article.urlToImage ?? "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440",
+                                            author: article.author ?? "unknown",
+                                            title: article.title!,
+                                            date: article.publishedAt!)
                         }
                     }
                 }
@@ -105,35 +157,15 @@ struct HomeView: View {
             .padding()
             
             
-            VStack {
-                Spacer()
-                HStack(spacing:50) {
-                    Button {
-                        
-                    } label: {
-                        NavBarButtonRowView(imageSystemName: "house", imageName: "Home")
-                    }
-                    
-                    Button {
-                        
-                    } label: {
-                        NavBarButtonRowView(imageSystemName: "suit.heart", imageName: "Favourite")
-                    }
-                    
-                    NavigationLink {
-                        ProfileView()
-                    } label: {
-                        NavBarButtonRowView(imageSystemName: "person.crop.circle", imageName: "profile")
-                    }
-
-                }
-                .frame(width: 300, height: 80)
-                .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-                .clipShape(Capsule())
-                .padding(.bottom,50)
-            }
+            NavigationBarView()
         }
         .onAppear(perform: loadData)
+        .onAppear(perform: loadData_general)
+        .onAppear(perform: loadData_health)
+        .onAppear(perform: loadData_business)
+        .onAppear(perform: loadData_science)
+        .onAppear(perform: loadData_sports)
+        .onAppear(perform: loadData_technology)
         .navigationBarHidden(true)
         
     }
@@ -142,7 +174,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(category: "health")
+        HomeView()
     }
 }
 
@@ -160,7 +192,7 @@ extension HomeView {
             if let data = data {
                 if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
                     DispatchQueue.main.async {
-                        print(response)
+                        //print(response)
 
                         self.details = response
                     }
@@ -169,6 +201,128 @@ extension HomeView {
             }
         }.resume()
     }
+    func loadData_general() {
+
+        guard let url = URL(string: general_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.details_general = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func loadData_health() {
+
+        guard let url = URL(string: health_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.details_health = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func loadData_business() {
+
+        guard let url = URL(string: business_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.details_business = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func loadData_science() {
+
+        guard let url = URL(string: science_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.details_science = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func loadData_sports() {
+
+        guard let url = URL(string: sports_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        self.details_sports = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func loadData_technology() {
+
+        guard let url = URL(string: technology_api_url) else {
+            print("Your API end point is Invalid")
+            return
+        }
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let response = try? JSONDecoder().decode(APIStructure.self, from: data) {
+                    DispatchQueue.main.async {
+                        print(response)
+
+                        self.details_technology = response
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
     
 
 }
