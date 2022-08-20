@@ -176,11 +176,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .previewDevice("iPhone 13 Pro Max")
-        HomeView()
-            .previewDevice("iPhone 8")
-        HomeView()
-            .previewDevice("iPod touch (7th generation)")
     }
 }
 

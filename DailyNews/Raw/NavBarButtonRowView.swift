@@ -28,10 +28,5 @@ struct NavBarButtonRowView: View {
 struct NavBarButtonRowView_Previews: PreviewProvider {
     static var previews: some View {
         NavBarButtonRowView(imageSystemName: "house", imageName: "Home")
-            .previewDevice("iPhone 13 Pro Max")
-        NavBarButtonRowView(imageSystemName: "house", imageName: "Home")
-            .previewDevice("iPhone 8")
-        NavBarButtonRowView(imageSystemName: "house", imageName: "Home")
-            .previewDevice("iPod touch (7th generation)")
     }
 }

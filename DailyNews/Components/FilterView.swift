@@ -73,10 +73,5 @@ struct FilterView: View {
 struct FilterView_Previews: PreviewProvider {
     static var previews: some View {
         FilterView()
-            .previewDevice("iPhone 13 Pro Max")
-        FilterView()
-            .previewDevice("iPhone 8")
-        FilterView()
-            .previewDevice("iPod touch (7th generation)")
     }
 }

@@ -35,10 +35,5 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-            .previewDevice("iPhone 13 Pro Max")
-        ProfileView()
-            .previewDevice("iPhone 8")
-        ProfileView()
-            .previewDevice("iPod touch (7th generation)")
     }
 }

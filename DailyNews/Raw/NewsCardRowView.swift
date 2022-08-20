@@ -52,18 +52,5 @@ struct NewsCardRawView_Previews: PreviewProvider {
             author: "Joel Corry",
             title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
             date: "2022-08-04T12:30:00Z")
-            .previewDevice("iPhone 13 Pro Max")
-        NewsCardRowView(
-            url: "https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/a7jryszhsvwphebof53d",
-            author: "Joel Corry",
-            title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
-            date: "2022-08-04T12:30:00Z")
-            .previewDevice("iPhone 8")
-        NewsCardRowView(
-            url: "https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/a7jryszhsvwphebof53d",
-            author: "Joel Corry",
-            title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
-            date: "2022-08-04T12:30:00Z")
-            .previewDevice("iPod touch (7th generation)")
     }
 }

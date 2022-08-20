@@ -15,7 +15,7 @@ struct CategoryButtonView: View {
             .background(.red)
             .clipShape(Capsule())
             .foregroundColor(.white)
-            .font(.system(size: ui.x * 0.03))
+            .font(.system(size: ui.x * 0.05))
  
     }
 }
@@ -23,10 +23,5 @@ struct CategoryButtonView: View {
 struct CategoryButtonView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryButtonView(category: "health")
-            .previewDevice("iPhone 13 Pro Max")
-        CategoryButtonView(category: "health")
-            .previewDevice("iPhone 8")
-        CategoryButtonView(category: "health")
-            .previewDevice("iPod touch (7th generation)")
     }
 }

@@ -61,11 +61,7 @@ struct SignInView: View {
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
-            .previewDevice("iPhone 13 Pro Max")
-        SignInView()
-            .previewDevice("iPhone 8")
-        SignInView()
-            .previewDevice("iPod touch (7th generation)")
+        
             
     }
 }

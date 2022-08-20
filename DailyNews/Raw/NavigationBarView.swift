@@ -41,10 +41,5 @@ struct NavigationBarView: View {
 struct NavigationBarView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationBarView()
-            .previewDevice("iPhone 13 Pro Max")
-        NavigationBarView()
-            .previewDevice("iPhone 8")
-        NavigationBarView()
-            .previewDevice("iPod touch (7th generation)")
     }
 }

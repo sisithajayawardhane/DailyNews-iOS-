@@ -54,16 +54,6 @@ struct LatestNewsCardRowView_Previews: PreviewProvider {
                               author: "Joel Corry",
                               title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
                               description: "None of Watson's $44.935 million signing bonus is in jeopardy due to language in his Browns contract")
-            .previewDevice("iPhone 13 Pro Max")
-        LatestNewsCardRowView(image_URL: "https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/a7jryszhsvwphebof53d",
-                              author: "Joel Corry",
-                              title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
-                              description: "None of Watson's $44.935 million signing bonus is in jeopardy due to language in his Browns contract")
-            .previewDevice("iPhone 8")
-        LatestNewsCardRowView(image_URL: "https://static.www.nfl.com/image/private/t_editorial_landscape_12_desktop/league/a7jryszhsvwphebof53d",
-                              author: "Joel Corry",
-                              title: "Agent's Take: The economic ramifications of Deshaun Watson's 11-game suspension - CBS Sports",
-                              description: "None of Watson's $44.935 million signing bonus is in jeopardy due to language in his Browns contract")
-            .previewDevice("iPod touch (7th generation)")
+        
     }
 }

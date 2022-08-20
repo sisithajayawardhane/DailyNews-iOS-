@@ -36,10 +36,5 @@ struct CustomInputRowView: View {
 struct CustomInputRowView_Previews: PreviewProvider {
     static var previews: some View {
         CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
-            .previewDevice("iPhone 13 Pro Max")
-        CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
-            .previewDevice("iPhone 8")
-        CustomInputRowView(textfieldName: "Email", placeholderText: "Email here", text: .constant(""))
-            .previewDevice("iPod touch (7th generation)")
     }
 }
