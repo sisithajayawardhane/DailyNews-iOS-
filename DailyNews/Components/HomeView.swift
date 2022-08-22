@@ -103,7 +103,7 @@ struct HomeView: View {
                     HStack {
                         ForEach(details.articles,id: \.self){ article in
                             NavigationLink {
-                                NewsDetailView(description: article.content ?? "", image_URL: article.urlToImage ?? "")
+                                NewsDetailView(description: article.description ?? "", image_URL: article.urlToImage ?? "")
                             }label: {
                                 LatestNewsCardRowView(image_URL: article.urlToImage ?? optional_url,
                                                       author: article.author ?? "unknown",
@@ -144,10 +144,15 @@ struct HomeView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         ForEach(details_general.articles, id: \.self){ article in
-                            NewsCardRowView(url: article.urlToImage ?? "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440",
-                                            author: article.author ?? "unknown",
-                                            title: article.title!,
-                                            date: article.publishedAt!)
+                            NavigationLink {
+                                NewsDetailView(description: article.description ?? "", image_URL: article.urlToImage ?? "")
+                            }label: {
+                                NewsCardRowView(url: article.urlToImage ?? "https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/JX7ZERRACYI63HHGNASTXUYYMQ.jpg&w=1440",
+                                                author: article.author ?? "unknown",
+                                                title: article.title!,
+                                                date: article.publishedAt!)
+                            }
+                            
                         }
                     }
                 }
